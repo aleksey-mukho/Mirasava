@@ -1,0 +1,102 @@
+@import url('../../../../styles/variables.css');
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  min-height: 100vh;
+
+  @media (--medium-screen) {
+    grid-template-columns: 1fr 320px;
+  }
+
+  @media (--small-screen) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 300px 1fr;
+  }
+}
+
+.leftCol {
+  background: url("../../../../../../public/images/backgrounds/loginBackground.jpg") 50% 50% no-repeat;
+  background-size: cover;
+  padding: 130px 20px 0 75px;
+
+  @media (--extra-small-screen) {
+    display: none;
+  }
+
+  /* @media (--small-screen) {
+    min-height: 30rem;
+    width: 100%;
+
+    & .description {
+      display: none;
+    }
+  }
+
+  @media (--extra-small-screen) {
+    display: none;
+  } */
+}
+
+.logoWrapper {
+  display: flex;
+  align-items: center;
+
+  & .logo {
+    width: 7rem;
+  }
+
+  & .logoText {
+    font-weight: 100;
+    font-size: 4rem;
+    color: #424242;
+    vertical-align: bottom;
+    padding-left: 20px;
+  }
+}
+
+.description {
+  font-size: 22px;
+  color: #616161;
+  margin: 22px 0;
+
+  @media (--small-screen) {
+    display: none;
+  }
+}
+
+.rightCol {
+  background: #fff;
+  padding: 13rem 5rem 5rem;
+
+  @media (--extra-small-screen) {
+    padding-top: 8rem;
+    min-height: 100vh;
+  }
+}
+
+.form {
+  margin-top: 3rem;
+}
+
+.rememberMeBlock {
+  margin-top: 2rem;
+
+  .link {
+    text-decoration: none;
+    font-weight: 500;
+  }
+}
+
+.buttonSendData {
+  display: block;
+  width: 100%;
+}
+
+.h3 {
+  margin: 0;
+}
+
+.h4 {
+  color: grey;
+}

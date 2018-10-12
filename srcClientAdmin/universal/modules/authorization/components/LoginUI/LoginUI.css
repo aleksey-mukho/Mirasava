@@ -1,0 +1,34 @@
+@import url('../../../../styles/colors.css');
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-dark);
+  min-height: 100vh;
+}
+
+.form {
+  width: 280px;
+}
+
+.logo {
+  margin-bottom: 80px;
+}
+
+.marginBottom30 {
+  margin-bottom: 30px;
+}
+
+.formFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.blockLeft,
+.blockRight {
+  min-width: 50%;
+}

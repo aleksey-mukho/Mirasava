@@ -1,0 +1,6 @@
+{
+  "version": "1.0",
+  "private": true,
+  "name": "LoginUI",
+  "main": "./LoginUI.js"
+}

@@ -1,0 +1,9 @@
+{
+  "verbose": true,
+  "debug": true,
+  "watch": [
+    "./srcClientAdmin/server",
+    "./srcServer"
+  ],
+  "ext": "js"
+}

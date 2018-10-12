@@ -1,0 +1,30 @@
+@import url('../../styles/colors.css');
+
+.rippleContainer {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  transform: translate(0, 0);
+}
+
+.ripple {
+  width: 0;
+  height: 0;
+  opacity: 0.7;
+  position: absolute;
+  border-radius: 150%;
+  background: var(--dark-green);
+  transform: scale(0);
+  cursor: inherit;
+  user-select: none;
+  display: inline-block;
+  pointer-events: none;
+  animation: rippleAnimation 0.7s linear;
+}
+
+@keyframes rippleAnimation {
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}

@@ -1,0 +1,10 @@
+@import url('./fonts.css');
+
+html {
+  font-family: var(--primary-font);
+  min-width: 320px;
+}
+
+body {
+  margin: 0;
+}

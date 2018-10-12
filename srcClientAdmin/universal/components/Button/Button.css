@@ -1,0 +1,25 @@
+@import url('../../styles/colors.css');
+@import url('../../styles/fonts.css');
+
+.button {
+  border-radius: 5px;
+  background: var(--green);
+  padding: 10px 16px;
+  cursor: pointer;
+  box-shadow: none;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+}
+
+.buttonText {
+  color: var(--dark-green);
+  font-weight: 700;
+  font-size: 14px;
+  font-family: var(--primary-font);
+}
+
+.image {
+  margin-right: 10px;
+}

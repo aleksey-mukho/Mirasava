@@ -1,0 +1,112 @@
+@import url('../../../universal/styles/colors.css');
+@import url('../../../universal/styles/fonts.css');
+
+.wrapper {
+  position: relative;
+}
+
+.input {
+  background: var(--white4);
+  color: var(--white);
+  padding: 15px 42px 0 12px;
+  border: none;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  height: 56px;
+  width: 100%;
+  font-family: var(--accent-font);
+  font-size: 16px;
+}
+
+.label {
+  position: absolute;
+  pointer-events: none;
+  left: 12px;
+  transform: translateY(18px);
+  transition: 0.2s ease all;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.inputHaveValue .label,
+.input:focus ~ .label {
+  transform: translateY(5px);
+  font-size: 12px;
+  color: var(--white);
+}
+
+.bar {
+  position: relative;
+
+  &::after,
+  &::before {
+    content: '';
+    width: 0;
+    height: 2px;
+    background-color: var(--white);
+    position: absolute;
+    bottom: -1px;
+    transition: 0.2s ease all;
+  }
+
+  &::after {
+    left: 50%;
+  }
+
+  &::before {
+    right: 50%;
+  }
+}
+
+.inputHaveValue .bar::before,
+.inputHaveValue .bar::after,
+.input:focus ~ .bar::before,
+.input:focus ~ .bar::after {
+  width: 50%;
+}
+
+.ok {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 42px;
+
+  &::after,
+  &::before {
+    content: '';
+    position: absolute;
+    background-color: var(--white);
+    top: 0;
+    left: 0;
+    right: 5px;
+    bottom: 0;
+    margin: auto;
+    height: 2px;
+    transition: 0.4s ease all;
+  }
+
+  &::before {
+    width: 0;
+    transform: translateX(0) rotate(0) translateY(0);
+  }
+
+  &::after {
+    width: 0;
+    transform: translateX(0) rotate(0);
+  }
+}
+
+.validateOk {
+  &.ok {
+    &::before {
+      width: 8px;
+      transform: translateX(-1px) rotate(45deg) translateY(3px);
+    }
+
+    &::after {
+      width: 16px;
+      transform: translateX(5px) rotate(-45deg);
+    }
+  }
+}

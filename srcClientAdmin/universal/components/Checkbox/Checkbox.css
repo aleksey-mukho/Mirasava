@@ -1,0 +1,98 @@
+@import url('../../styles/colors.css');
+@import url('../../styles/fonts.css');
+
+.wrapper {
+  background: transparent;
+}
+
+.customCheckbox {
+  border: 2px solid var(--green);
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  margin-right: 10px;
+  position: relative;
+  transition: background ease 0.2s;
+  cursor: pointer;
+
+  &::after {
+    content: '';
+  }
+
+  &.checkboxActive {
+    background-color: var(--green);
+
+    &::after {
+      width: 12px;
+      height: 9px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+      background-image: url('../../assets/icons/ok.svg');
+    }
+  }
+}
+
+.ripple {
+  height: 100%;
+  transition: all ease 0.3s;
+  background: rgba(30, 185, 128, 0);
+  border-radius: 50%;
+}
+
+.rippleAnimatedWrapper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+}
+
+.rippleAnimated {
+  animation: growCircle 0.5s ease;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.label {
+  position: relative;
+  font-weight: 700;
+  font-family: var(--primary-font);
+  color: var(--white);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    .ripple {
+      transform: scale(2.8);
+      background: rgba(30, 185, 128, 0.1);
+    }
+  }
+}
+
+.nativeInput {
+  visibility: hidden;
+  position: absolute;
+
+  &:focus ~ .customCheckbox .ripple {
+    background: rgba(30, 185, 128, 0.3);
+  }
+}
+
+@keyframes growCircle {
+  0%,
+  100% {
+    transform: scale(0);
+  }
+
+  70% {
+    background: rgba(30, 185, 128, 0.5);
+    transform: scale(2.8);
+  }
+}
