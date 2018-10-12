@@ -1,4 +1,4 @@
-# 🧝‍♀️ Mirasava - boilerplate for admin side React project.
+# 🧝‍ Mirasava - boilerplate for admin side React project.
 
 Now I did only module with authorization, in future I want to do lightweight CMS on Node.js + React.
 
