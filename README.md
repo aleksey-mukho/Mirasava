@@ -1,6 +1,6 @@
 # 🧝‍ Mirasava - boilerplate for admin side React project.
 
-![hmr-ssr](mirasava.png)
+![mirasava-gif-description](mirasava.gif)
 
 Mirasava using the following technologies:
 
