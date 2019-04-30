@@ -1,9 +1,9 @@
 // @flow
-import React, { PureComponent } from 'react';
+import React, { PureComponent } from "react";
 
-import { s4 } from 'universal/services/utils/generateId';
+import { s4 } from "universal/services/utils/generateId";
 
-import InputTextUI from './InputTextUI';
+import InputTextUI from "./InputTextUI";
 
 type InputValueType = string;
 
@@ -11,36 +11,38 @@ type PropsType = {
   type?: string,
   classNames?: Array<string>,
   onChange: (value: string) => void,
-  label: string
+  label: string,
 };
 
 type StateType = {
-  inputValue: InputValueType
+  inputValue: InputValueType,
 };
 
 class InputText extends PureComponent<PropsType, StateType> {
   static defaultProps = {
-    type: 'text',
+    type: "text",
     classNames: [],
-  }
+  };
 
-  inputId = s4()
+  inputId = s4();
 
   state = {
-    inputValue: '',
-  }
+    inputValue: "",
+  };
 
-  handleChange = ({ target: { value } }: {
+  handleChange = ({
+    target: { value },
+  }: {
     target: {
-      value: InputValueType
-    }
+      value: InputValueType,
+    },
   }) => {
     this.setState({
       inputValue: value,
     });
 
     this.props.onChange(value);
-  }
+  };
 
   render() {
     const { inputValue } = this.state;
@@ -60,7 +62,7 @@ class InputText extends PureComponent<PropsType, StateType> {
 }
 
 InputText.defaultProps = {
-  type: 'text',
+  type: "text",
   classNames: [],
 };
 

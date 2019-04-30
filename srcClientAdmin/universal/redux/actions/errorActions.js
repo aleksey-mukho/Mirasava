@@ -1,13 +1,15 @@
 // @flow
-import type { ErrorType } from 'universal/services/flow/notifications';
+import type { ErrorType } from "universal/services/flow/notifications";
 
-export const ERROR_THROW = 'error/throw';
-export const ERROR_COMMON_THROW = 'error/common/throw';
+export const ERROR_THROW = "error/throw";
+export const ERROR_COMMON_THROW = "error/common/throw";
 
 export const throwCommonError = ({
-  message, title, errorType, id,
-}: ErrorType,
-) => ({
+  message,
+  title,
+  errorType,
+  id,
+}: ErrorType) => ({
   type: ERROR_COMMON_THROW,
   message,
   id,
@@ -16,10 +18,11 @@ export const throwCommonError = ({
 });
 
 export const throwError = ({
-  message, code,
+  message,
+  code,
 }: {
   message: string,
-  code: string
+  code: string,
 }) => ({
   type: ERROR_THROW,
   message,

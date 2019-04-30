@@ -1,19 +1,19 @@
 // @flow
-import type { ComponentType } from 'react';
-import React, { Component } from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import type { ComponentType } from "react";
+import React, { Component } from "react";
+import { Route, Redirect } from "react-router-dom";
 
-import 'universal/styles/global.css';
-import 'universal/styles/reset.css';
-import type { CookiesType } from 'universal/services/storage/cookies';
-import { renderPageByUserAuth } from './utils';
-import PrivateRoute from './PrivateRoute';
+import "universal/styles/global.css";
+import "universal/styles/reset.css";
+import type { CookiesType } from "universal/services/storage/cookies";
+import { renderPageByUserAuth } from "./utils";
+import PrivateRoute from "./PrivateRoute";
 
-import * as RouteMap from './RouteMap';
+import * as RouteMap from "./RouteMap";
 
 type PropsType = {
   location: Object,
-  cookies: CookiesType
+  cookies: CookiesType,
 };
 class Routes extends Component<PropsType> {
   constructor(props: PropsType) {
@@ -22,13 +22,10 @@ class Routes extends Component<PropsType> {
     this.PrivateRouteHOC = PrivateRoute(props.cookies);
   }
 
-  PrivateRouteHOC: ComponentType<*>
+  PrivateRouteHOC: ComponentType<*>;
 
   render() {
-    const {
-      location,
-      cookies,
-    } = this.props;
+    const { location, cookies } = this.props;
     const { PrivateRouteHOC } = this;
 
     return [
@@ -38,16 +35,28 @@ class Routes extends Component<PropsType> {
         exact
         location={location}
         path="/"
-        render={() => (
+        render={() =>
           renderPageByUserAuth({
             cookies,
             ComponentAuthUser: <RouteMap.Home />,
-            ComponentNotAuthUser: (<Redirect to="/login" />),
+            ComponentNotAuthUser: <Redirect to="/login" />,
           })
-        )}
+        }
       />,
-      <Route key="login" exact location={location} path="/login" component={RouteMap.LoadableLogin} />,
-      <PrivateRouteHOC key="articles" exact location={location} path="/articles" component={RouteMap.ArticlesList} />,
+      <Route
+        key="login"
+        exact
+        location={location}
+        path="/login"
+        component={RouteMap.LoadableLogin}
+      />,
+      <PrivateRouteHOC
+        key="articles"
+        exact
+        location={location}
+        path="/articles"
+        component={RouteMap.ArticlesList}
+      />,
     ];
   }
 }

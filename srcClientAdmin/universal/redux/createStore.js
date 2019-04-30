@@ -1,42 +1,40 @@
 // @flow
-import { Observable } from 'rxjs';
+import { Observable } from "rxjs";
 import {
   // compose,
   createStore,
   combineReducers,
   applyMiddleware,
-} from 'redux';
-import {
-  routerReducer,
-  routerMiddleware,
-} from 'react-router-redux';
-import { createEpicMiddleware } from 'redux-observable';
+} from "redux";
+import { routerReducer, routerMiddleware } from "react-router-redux";
+import { createEpicMiddleware } from "redux-observable";
 
-import type { AjaxType } from 'universal/services/api/utils';
-import utils from 'universal/services/api/utils';
-import { devMode } from 'server/constants';
-import * as reducers from './reducers';
-import rootEpic from './epics';
-import api from '../services/api';
-import type { CookiesType } from '../services/storage/cookies';
+import type { AjaxType } from "universal/services/api/utils";
+import utils from "universal/services/api/utils";
+import { devMode } from "server/constants";
+import * as reducers from "./reducers";
+import rootEpic from "./epics";
+import api from "../services/api";
+import type { CookiesType } from "../services/storage/cookies";
 
-const R = require('ramda');
+const R = require("ramda");
 
 export default {
-  getIsPROD: () => devMode === 'production',
+  getIsPROD: () => devMode === "production",
 
-  getApiCollections: (ajaxInjectedCookies: AjaxType => Observable<mixed>) => (
-    Object.keys(api)
-      .reduce((acc, apiName) => {
-        // $FlowFixMe
-        acc[apiName] = api[apiName](ajaxInjectedCookies);
-        return acc;
-      }, {})
-  ),
+  getApiCollections: (ajaxInjectedCookies: AjaxType => Observable<mixed>) =>
+    Object.keys(api).reduce((acc, apiName) => {
+      // $FlowFixMe
+      acc[apiName] = api[apiName](ajaxInjectedCookies);
+      return acc;
+    }, {}),
 
-  getEpicMiddleware({ cookies, history }: {
+  getEpicMiddleware({
+    cookies,
+    history,
+  }: {
     cookies: CookiesType,
-    history: {}
+    history: {},
   }) {
     const ajaxInjectedCookies = utils.ajax(cookies);
     const apiCollections = this.getApiCollections(ajaxInjectedCookies);
@@ -49,21 +47,15 @@ export default {
     });
   },
 
-  getMiddlewares({ cookies, history }: {
-    cookies: CookiesType,
-    history: {}
-  }) {
+  getMiddlewares({ cookies, history }: { cookies: CookiesType, history: {} }) {
     const routerMiddlewareWithHistory = routerMiddleware(history);
     const epicMiddleware = this.getEpicMiddleware({ cookies, history });
     return [epicMiddleware, routerMiddlewareWithHistory];
   },
 
-  activateHMRForReducers({ store, module }: {
-    store: Object,
-    module: Object
-  }) {
-    module.hot.accept('./reducers', () => {
-      const nextReducers = require('./reducers/index.js'); // eslint-disable-line global-require
+  activateHMRForReducers({ store, module }: { store: Object, module: Object }) {
+    module.hot.accept("./reducers", () => {
+      const nextReducers = require("./reducers/index.js"); // eslint-disable-line global-require
       const rootReducer = combineReducers({
         ...nextReducers,
         router: routerReducer,
@@ -74,14 +66,13 @@ export default {
   },
 
   checkIsActivateHMR(store: Object, module: Object) {
-    R.when(
-      R.complement(R.not),
-      () => this.activateHMRForReducers({ store, module }),
+    R.when(R.complement(R.not), () =>
+      this.activateHMRForReducers({ store, module })
     )(module.hot);
   },
 
   createDevLogger: (middlewares: Array<mixed>): void => {
-    const { createLogger } = require('redux-logger');
+    const { createLogger } = require("redux-logger");
     const logger = createLogger({
       predicate: R.T(),
       collapsed: true,
@@ -91,10 +82,7 @@ export default {
   },
 
   checkIsCreateLogger(middlewares: Array<mixed>): void {
-    R.when(
-      () => !this.getIsPROD(),
-      this.createDevLogger,
-    )(middlewares);
+    R.when(() => !this.getIsPROD(), this.createDevLogger)(middlewares);
   },
 
   createReduxStore(history: {}, cookies: CookiesType): {} {
@@ -109,9 +97,7 @@ export default {
         router: routerReducer,
       }),
       initialState,
-      applyMiddleware(
-        ...middlewares,
-      ),
+      applyMiddleware(...middlewares)
     );
 
     middlewares[0].run(rootEpic);

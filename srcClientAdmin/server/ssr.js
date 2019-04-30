@@ -1,18 +1,18 @@
 // @flow
-import type { $Request, $Response } from 'express';
+import type { $Request, $Response } from "express";
 
-const React = require('react');
-const Cookies = require('universal-cookie');
-const { renderToNodeStream } = require('react-dom/server');
-const createHistory = require('history/createMemoryHistory').default;
+const React = require("react");
+const Cookies = require("universal-cookie");
+const { renderToNodeStream } = require("react-dom/server");
+const createHistory = require("history/createMemoryHistory").default;
 
-const createStore = require('universal/redux/createStore');
+const createStore = require("universal/redux/createStore");
 
-const Html = require('./Html');
+const Html = require("./Html");
 
 function renderApp(req, res, store, cookies, assets) {
   const context = {};
-  res.write('<!DOCTYPE html>');
+  res.write("<!DOCTYPE html>");
   const stream = renderToNodeStream(
     <Html
       title="🧝‍ Mirasava"
@@ -21,9 +21,12 @@ function renderApp(req, res, store, cookies, assets) {
       context={context}
       cookies={cookies}
       assets={assets}
-    />,
+    />
   );
-  stream.pipe(res, { end: true });
+  stream.pipe(
+    res,
+    { end: true }
+  );
 }
 
 const renderPage = (req: $Request, res: $Response) => {
@@ -33,7 +36,7 @@ const renderPage = (req: $Request, res: $Response) => {
   const store = createStore.createReduxStore(history, cookies);
 
   // $FlowFixMe
-  const assets = require('../../build/assets.json'); // eslint-disable-line import/no-unresolved
+  const assets = require("../../build/assets.json"); // eslint-disable-line import/no-unresolved
 
   renderApp(req, res, store, cookies, assets);
 };

@@ -1,12 +1,17 @@
 {
   "extends": [
     "airbnb",
-    "plugin:flowtype/recommended"
+    "plugin:flowtype/recommended",
+    "plugin:prettier/recommended"
   ],
   "plugins": [
     "flowtype"
   ],
   "rules": {
+    "prettier/prettier": ["error", {
+      "trailingComma": "es5",
+      "jsxBracketSameLine": true
+    }],
     "func-names": "off",
     "arrow-body-style": "off",
     "function-paren-newline": "off",
@@ -15,6 +20,7 @@
     "react/button-has-type": "off",
     "react/prop-types": "off",
     "global-require": "off",
+    "linebreak-style": "off",
     "import/prefer-default-export": "off",
     "header/header": "off",
     "import/no-extraneous-dependencies": "off",
@@ -29,10 +35,6 @@
       "boolean"
     ],
     "flowtype/define-flow-type": 1,
-    "flowtype/delimiter-dangle": [
-      2,
-      "never"
-    ],
     "flowtype/generic-spacing": [
       2,
       "never"

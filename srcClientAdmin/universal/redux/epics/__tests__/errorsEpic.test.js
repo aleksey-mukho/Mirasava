@@ -1,18 +1,18 @@
-import { expectEpic } from 'testUtils/epics';
+import { expectEpic } from "testUtils/epics";
 
-import { notificationType } from 'universal/services/constants/notifications';
-import * as errorActions from 'universal/redux/actions/errorActions';
-import * as errorsEpics from '../errorsEpic';
+import { notificationType } from "universal/services/constants/notifications";
+import * as errorActions from "universal/redux/actions/errorActions";
+import * as errorsEpics from "../errorsEpic";
 
-const utilsId = require('universal/services/utils/generateId');
+const utilsId = require("universal/services/utils/generateId");
 
-describe('errorsEpics', () => {
+describe("errorsEpics", () => {
   utilsId.s4 = jest.fn(() => 1);
-  describe('chooseAction', () => {
-    test('Call throwCommonError, when code === undefined', () => {
+  describe("chooseAction", () => {
+    test("Call throwCommonError, when code === undefined", () => {
       const error = {
-        message: 'message',
-        code: 'PERM-202',
+        message: "message",
+        code: "PERM-202",
       };
       errorActions.throwCommonError = jest.fn();
 
@@ -23,14 +23,14 @@ describe('errorsEpics', () => {
         message: error.message,
         errorType: notificationType.error,
         id: 1,
-        title: 'Error',
+        title: "Error",
       });
     });
 
-    test('Call throwCommonError, when code !== undefined', () => {
+    test("Call throwCommonError, when code !== undefined", () => {
       const error = {
-        message: 'message',
-        code: 'PERM-202',
+        message: "message",
+        code: "PERM-202",
       };
       errorActions.throwCommonError = jest.fn();
 
@@ -41,46 +41,41 @@ describe('errorsEpics', () => {
         message: error.message,
         errorType: notificationType.error,
         id: 1,
-        title: 'Error',
+        title: "Error",
       });
     });
   });
 
-  describe('errorInterceptionEpic', () => {
-    test('Return querySuccess action, when articlesApi.query answered', () => {
+  describe("errorInterceptionEpic", () => {
+    test("Return querySuccess action, when articlesApi.query answered", () => {
       errorActions.throwCommonError = jest.fn();
 
       const messageError = {
-        message: 'error',
-        code: 'PERM-201',
+        message: "error",
+        code: "PERM-201",
       };
 
-      expectEpic(
-        errorsEpics.errorInterceptionEpic,
-        null,
-        null,
-        {
-          i: {
-            t: '-b--b',
-            a: {
-              b: errorActions.throwError(messageError),
-            },
-          },
-          o: {
-            t: '-c--c',
-            a: {
-              c: errorActions.throwCommonError(),
-            },
+      expectEpic(errorsEpics.errorInterceptionEpic, null, null, {
+        i: {
+          t: "-b--b",
+          a: {
+            b: errorActions.throwError(messageError),
           },
         },
-      );
+        o: {
+          t: "-c--c",
+          a: {
+            c: errorActions.throwCommonError(),
+          },
+        },
+      });
 
       expect(errorActions.throwCommonError).toHaveBeenCalledTimes(3);
       expect(errorActions.throwCommonError).toHaveBeenCalledWith({
         message: messageError.message,
         errorType: notificationType.error,
         id: 1,
-        title: 'Error',
+        title: "Error",
       });
     });
   });

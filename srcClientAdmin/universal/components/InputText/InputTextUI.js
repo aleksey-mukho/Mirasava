@@ -1,25 +1,29 @@
 // @flow
-import React from 'react';
+import React from "react";
 
-import styles from 'universal/services/styles';
+import styles from "universal/services/styles";
 
-import s from './InputText.css';
+import s from "./InputText.css";
 
-const R = require('ramda');
+const R = require("ramda");
 
-export const addClassIsValueNotEmpty = (inputValue: string) => (
+export const addClassIsValueNotEmpty = (inputValue: string) =>
   R.when(
-    R.compose(R.not, R.isEmpty),
-    R.always(s.inputHaveValue),
-  )(inputValue)
-);
+    R.compose(
+      R.not,
+      R.isEmpty
+    ),
+    R.always(s.inputHaveValue)
+  )(inputValue);
 
-export const addClassIsValueLengthGt3 = (inputValue: string) => (
+export const addClassIsValueLengthGt3 = (inputValue: string) =>
   R.when(
-    R.compose(R.lt(3), R.length),
-    R.always(s.validateOk),
-  )(inputValue)
-);
+    R.compose(
+      R.lt(3),
+      R.length
+    ),
+    R.always(s.validateOk)
+  )(inputValue);
 
 export default ({
   inputValue,
@@ -35,17 +39,18 @@ export default ({
   inputId: string,
   handleChange: (event: {
     target: {
-      value: string
-    }
+      value: string,
+    },
   }) => void,
-  label: string
+  label: string,
 }) => (
   <div
     className={styles([
       // $FlowFixMe
-      s.wrapper, addClassIsValueNotEmpty(inputValue), ...classNames,
-    ])}
-  >
+      s.wrapper,
+      addClassIsValueNotEmpty(inputValue),
+      ...classNames,
+    ])}>
     <input
       autoComplete="new-password"
       className={s.input}
@@ -55,10 +60,7 @@ export default ({
       value={inputValue}
     />
     {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-    <label
-      htmlFor={inputId}
-      className={s.label}
-    >
+    <label htmlFor={inputId} className={s.label}>
       {label}
     </label>
     <div className={styles([s.ok, addClassIsValueLengthGt3(inputValue)])} />

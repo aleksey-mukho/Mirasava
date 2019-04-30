@@ -1,7 +1,7 @@
 // @flow
-import { expiresInAccess } from '../constants/auth';
+import { expiresInAccess } from "../constants/auth";
 
-const R = require('ramda');
+const R = require("ramda");
 
 export default {
   getTimeExpires: () => Date.now() + expiresInAccess,
@@ -9,11 +9,14 @@ export default {
   getStringifyAccessToken(accessToken: string) {
     return R.ifElse(
       R.isNil,
-      () => { throw new Error('accessToken is empty'); },
-      () => JSON.stringify({
-        token: accessToken,
-        timeExpires: this.getTimeExpires(),
-      }),
+      () => {
+        throw new Error("accessToken is empty");
+      },
+      () =>
+        JSON.stringify({
+          token: accessToken,
+          timeExpires: this.getTimeExpires(),
+        })
     )(accessToken);
   },
 };

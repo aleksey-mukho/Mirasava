@@ -1,15 +1,15 @@
 // @flow
-import * as errorActions from 'universal/redux/actions/errorActions';
-import type { ErrorType } from 'universal/services/flow/notifications';
-import * as notificationsActions from './notificationsActions';
+import * as errorActions from "universal/redux/actions/errorActions";
+import type { ErrorType } from "universal/services/flow/notifications";
+import * as notificationsActions from "./notificationsActions";
 
 type ActionType = {
   type: string,
-  ...ErrorType
+  ...ErrorType,
 };
 
 type StateType = Array<{
-  ...ErrorType
+  ...ErrorType,
 }>;
 
 export const reducer = (state: StateType = [], action: ActionType) => {

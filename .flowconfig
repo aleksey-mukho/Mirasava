@@ -16,3 +16,6 @@ module.system.node.resolve_dirname=node_modules
 module.system.node.resolve_dirname=srcClientAdmin
 
 [strict]
+
+[version]
+^0.79.1

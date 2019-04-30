@@ -1,17 +1,16 @@
 // @flow
-import { Observable } from 'rxjs';
+import { Observable } from "rxjs";
 
-import type { AjaxType } from './utils';
+import type { AjaxType } from "./utils";
 
-const QUERY = 'query';
+const QUERY = "query";
 
 export default (ajax: AjaxType => Observable<mixed>) => ({
-  query: () => (
+  query: () =>
     ajax({
       config: {
         url: QUERY,
-        method: 'GET',
+        method: "GET",
       },
-    })
-  ),
+    }),
 });

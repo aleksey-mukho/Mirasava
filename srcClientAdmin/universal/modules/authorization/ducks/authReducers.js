@@ -1,16 +1,16 @@
 // @flow
-import * as authActions from './authActions';
+import * as authActions from "./authActions";
 
 const initialState = {
   isAuthSuccess: false,
 };
 
 type ActionType = {
-  type: string
+  type: string,
 };
 
 type StateType = {
-  isAuthSuccess: boolean
+  isAuthSuccess: boolean,
 };
 
 const reducer = (state: StateType = initialState, action: ActionType) => {

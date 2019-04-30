@@ -1,21 +1,22 @@
-import AjaxSubscriber from '../AjaxSubscriber';
-import utils from '..';
+import AjaxSubscriber from "../AjaxSubscriber";
+import utils from "..";
 
-jest.mock('../AjaxSubscriber');
+jest.mock("../AjaxSubscriber");
 
-describe('api/utils/index.request', () => {
-  test('AjaxSubscriber call, when call request', (done) => {
-    utils.request({
-      config: {
-        url: 'url',
-        method: 'POST',
-      },
-    })
+describe("api/utils/index.request", () => {
+  test("AjaxSubscriber call, when call request", done => {
+    utils
+      .request({
+        config: {
+          url: "url",
+          method: "POST",
+        },
+      })
       .subscribe({
-        next: (responce) => {
+        next: responce => {
           expect(AjaxSubscriber).toHaveBeenCalled();
           expect(AjaxSubscriber).toHaveBeenCalledTimes(1);
-          expect(responce).toEqual({ responce: 'responce' });
+          expect(responce).toEqual({ responce: "responce" });
         },
         complete: done,
       });

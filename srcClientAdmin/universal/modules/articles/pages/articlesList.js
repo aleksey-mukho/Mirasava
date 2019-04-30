@@ -1,13 +1,13 @@
 // @flow
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import type { DispatchType } from 'universal/services/flow/redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import type { DispatchType } from "universal/services/flow/redux";
 
-import * as articlesActions from '../ducks/articlesActions';
+import * as articlesActions from "../ducks/articlesActions";
 
 type PropsType = {
-  query: () => {}
+  query: () => {},
 };
 
 class ArticlesList extends Component<PropsType> {
@@ -18,7 +18,9 @@ class ArticlesList extends Component<PropsType> {
   render() {
     return [
       <h1 key="1">Admin Panel</h1>,
-      <Link key="2" to="/login">Login</Link>,
+      <Link key="2" to="/login">
+        Login
+      </Link>,
     ];
   }
 }
@@ -27,4 +29,7 @@ const mapDispatchToProps = (dispatch: DispatchType) => ({
   query: () => dispatch(articlesActions.query()),
 });
 
-export default connect(null, mapDispatchToProps)(ArticlesList);
+export default connect(
+  null,
+  mapDispatchToProps
+)(ArticlesList);

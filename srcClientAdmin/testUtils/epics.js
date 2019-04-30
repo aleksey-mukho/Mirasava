@@ -1,5 +1,5 @@
-import { TestScheduler } from 'rxjs/testing';
-import { ActionsObservable } from 'redux-observable';
+import { TestScheduler } from "rxjs/testing";
+import { ActionsObservable } from "redux-observable";
 
 // Related docs
 // https://www.nexthink.com/blog/marble-testing-redux-observable-epics/
@@ -11,10 +11,8 @@ import { ActionsObservable } from 'redux-observable';
 //   return n === 1 ? unit : unit + frames(n - 1, unit);
 // };
 
-const createTestScheduler = () => (
-  new TestScheduler((actual, expected) => expect(actual).toEqual(expected))
-);
-
+const createTestScheduler = () =>
+  new TestScheduler((actual, expected) => expect(actual).toEqual(expected));
 
 const expectEpic = (epic, dependencies, store, actions) => {
   const testScheduler = createTestScheduler();
@@ -25,9 +23,7 @@ const expectEpic = (epic, dependencies, store, actions) => {
   };
 
   testScheduler.run(({ expectObservable, hot }) => {
-    const action$ = new ActionsObservable(
-      hot(actions.i.t, actions.i.a),
-    );
+    const action$ = new ActionsObservable(hot(actions.i.t, actions.i.a));
     const output = epic(action$, store, epicDependencies);
     expectObservable(output).toBe(actions.o.t, actions.o.a);
   });

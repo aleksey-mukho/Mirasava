@@ -1,15 +1,15 @@
-import * as generateId from '../generateId';
+import * as generateId from "../generateId";
 
-describe('generateId', () => {
-  test('Return 0000, when Math.random = () => 1', () => {
+describe("generateId", () => {
+  test("Return 0000, when Math.random = () => 1", () => {
     global.Math.random = () => 1;
 
-    expect(generateId.s4()).toBe('0000');
+    expect(generateId.s4()).toBe("0000");
   });
 
-  test('Return 7a5a7a5a-7a5a-7a5a-7a5a-7a5a7a5a7a5a', () => {
+  test("Return 7a5a7a5a-7a5a-7a5a-7a5a-7a5a7a5a7a5a", () => {
     global.Math.random = () => 1;
-    const s4 = '7a5a';
+    const s4 = "7a5a";
     generateId.s4 = jest.fn().mockReturnValue(s4);
     const guid = generateId.guid();
 

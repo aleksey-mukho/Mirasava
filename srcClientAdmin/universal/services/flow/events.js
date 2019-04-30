@@ -2,6 +2,6 @@
 export type EventType = {
   preventDefault: () => void,
   target: {
-    value: {}
-  }
+    value: {},
+  },
 };

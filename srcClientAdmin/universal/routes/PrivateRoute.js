@@ -1,29 +1,31 @@
 // @flow
-import * as React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import * as React from "react";
+import { Route, Redirect } from "react-router-dom";
 
-import type { CookiesType } from '../services/storage/cookies';
-import { renderPageByUserAuth } from './utils';
+import type { CookiesType } from "../services/storage/cookies";
+import { renderPageByUserAuth } from "./utils";
 
-
-export default (cookies: CookiesType) => ({ component: Component, ...rest }: {
-  component: React.ComponentType<*>
+export default (cookies: CookiesType) => ({
+  component: Component,
+  ...rest
+}: {
+  component: React.ComponentType<*>,
 }) => (
   <Route
     {...rest}
-    render={
-      props => (
-        renderPageByUserAuth({
-          cookies,
-          ComponentAuthUser: <Component {...props} />,
-          ComponentNotAuthUser: (<Redirect
+    render={props =>
+      renderPageByUserAuth({
+        cookies,
+        ComponentAuthUser: <Component {...props} />,
+        ComponentNotAuthUser: (
+          <Redirect
             to={{
-              pathname: '/login',
+              pathname: "/login",
               state: { from: props.location },
             }}
-          />),
-        })
-      )
+          />
+        ),
+      })
     }
   />
 );
@@ -43,7 +45,6 @@ export default (cookies: CookiesType) => ({ component: Component, ...rest }: {
 // )({
 //   cookies: props.cookies, cookieName: authTokensCookiesName,
 // })
-
 
 // const cookies = getCookie({
 //   cookies: props.cookies, cookieName: authTokensCookiesName,

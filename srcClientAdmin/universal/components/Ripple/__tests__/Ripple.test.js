@@ -1,8 +1,8 @@
-import Ripple from '../Ripple';
+import Ripple from "../Ripple";
 
-describe('Ripple', () => {
-  describe('calculateRipplePosition', () => {
-    test('Return position x and y', () => {
+describe("Ripple", () => {
+  describe("calculateRipplePosition", () => {
+    test("Return position x and y", () => {
       const ripple = new Ripple();
       const event = {
         clientX: 11,
@@ -16,7 +16,11 @@ describe('Ripple', () => {
         })),
       };
 
-      const coordinates = ripple.calculateRipplePosition({ event, parent, size });
+      const coordinates = ripple.calculateRipplePosition({
+        event,
+        parent,
+        size,
+      });
       expect(coordinates).toEqual({
         x: 4,
         y: 13,
@@ -26,8 +30,8 @@ describe('Ripple', () => {
     });
   });
 
-  describe('calculateRippleSize', () => {
-    test('Return offsetWidth when offsetWidth > offsetHeight', () => {
+  describe("calculateRippleSize", () => {
+    test("Return offsetWidth when offsetWidth > offsetHeight", () => {
       const parent = {
         offsetWidth: 123,
         offsetHeight: 21,
@@ -37,7 +41,7 @@ describe('Ripple', () => {
       expect(ripple.calculateRippleSize({ parent })).toBe(parent.offsetWidth);
     });
 
-    test('Return offsetHeight when offsetHeight > offsetWidth', () => {
+    test("Return offsetHeight when offsetHeight > offsetWidth", () => {
       const parent = {
         offsetWidth: 21,
         offsetHeight: 123,
@@ -48,16 +52,16 @@ describe('Ripple', () => {
     });
   });
 
-  describe('doTheRipple', () => {
-    test('Call this.renderRipple when this.rippleContainer isn\'t null', () => {
+  describe("doTheRipple", () => {
+    test("Call this.renderRipple when this.rippleContainer isn't null", () => {
       const event = {
         clientX: 11,
         clientY: 22,
       };
       const rippleSize = 23;
-      const rippleRef = 'rippleRef';
-      const rippleContainer = 'rippleContainer';
-      const ripplePosition = 'ripplePosition';
+      const rippleRef = "rippleRef";
+      const rippleContainer = "rippleContainer";
+      const ripplePosition = "ripplePosition";
 
       const ripple = new Ripple();
 
@@ -76,16 +80,20 @@ describe('Ripple', () => {
 
       expect(ripple.calculateRipplePosition).toHaveBeenCalledTimes(1);
       expect(ripple.calculateRipplePosition).toHaveBeenCalledWith({
-        event, parent: rippleContainer, size: rippleSize,
+        event,
+        parent: rippleContainer,
+        size: rippleSize,
       });
 
       expect(ripple.renderRipple).toHaveBeenCalledTimes(1);
       expect(ripple.renderRipple).toHaveBeenCalledWith({
-        toNode: rippleRef, position: ripplePosition, size: rippleSize,
+        toNode: rippleRef,
+        position: ripplePosition,
+        size: rippleSize,
       });
     });
 
-    test('Don\'t call this.renderRipple when this.rippleContainer is null', () => {
+    test("Don't call this.renderRipple when this.rippleContainer is null", () => {
       const event = {
         clientX: 11,
         clientY: 22,

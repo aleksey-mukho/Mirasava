@@ -1,2 +1,2 @@
 // @flow
-export const ARTICLES_ROUTE = '/articles';
+export const ARTICLES_ROUTE = "/articles";

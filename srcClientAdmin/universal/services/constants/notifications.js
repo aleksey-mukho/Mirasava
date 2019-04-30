@@ -1,6 +1,6 @@
 // @flow
 export const notificationType = {
-  error: 'error',
-  warning: 'warning',
-  info: 'info',
+  error: "error",
+  warning: "warning",
+  info: "info",
 };
